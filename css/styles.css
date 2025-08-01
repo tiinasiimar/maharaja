@@ -3,15 +3,14 @@
     --primary-color: #B01E27; /* Darker red for better contrast */
     --primary-dark: #8A171F; /* Even darker for hover states */
     --secondary-color: #F9F4F0; /* Light cream background */
-    --accent-color: #D4AF37; /* Deeper gold with better contrast */
-    --accent-dark: #B8860B; /* Darker gold for hover states */
+    --accent-color: #D4AF37; /* Deeper gold for accents */
+    --button-color: #B8860B; /* Darker gold as main button color */
     --text-color: #333333;
     --light-text: #FFFFFF;
     --focus-outline: 3px solid #8A171F;
     --font-primary: 'Georgia', serif;
     --font-secondary: 'Arial', sans-serif;
 }
-
 
 /* Basic reset */
 * {
@@ -186,7 +185,7 @@ nav a:hover::after {
 .language-selector a {
     text-decoration: none;
     color: var(--text-color);
-    font-size: 0.9rem;
+    font-size: 1rem;
     transition: color 0.3s;
 }
 
@@ -399,24 +398,25 @@ footer p {
 .hero p {
     font-size: 1.2rem;
     max-width: 600px;
-    margin: 0 auto;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    margin: 0 auto 2em;
 }
 
 /* Button styling like Chakra's gold buttons but red */
 .btn {
     display: inline-block;
-    padding: 12px 25px;
-    background-color: var(--primary-color);
+    background-color: var(--button-color);
     color: var(--light-text);
+    padding: 12px 24px;
     text-decoration: none;
     border-radius: 4px;
-    font-family: var(--font-primary);
-    transition: background-color 0.3s, transform 0.3s;
-    margin-top: 20px;
+    font-weight: bold;
+    transition: all 0.3s;
 }
 
-.btn:hover {
-    background-color: var(--primary-dark);
-    transform: translateY(-3px);
+.btn:hover, .btn:focus {
+    background-color: #AA7B00; /* Slightly different shade of dark gold */
+    transform: translateY(-2px); /* Slight lift effect */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
+

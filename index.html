@@ -2,13 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Restaurant Name</title>
     <link rel="stylesheet" href="css/styles.css">
     <!-- Add preload for critical resources -->
     <link rel="preload" href="css/styles.css" as="style">
 </head>
 <body>
+<script>
+    // Handle anchor clicks to manage focus
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const targetId = this.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
+
+            if (targetElement) {
+                targetElement.focus();
+                // Optional: Scroll into view handling is automatic with focus(),
+                // but you can customize it if needed
+            }
+        });
+    });
+</script>
 <header>
     <div class="logo" role="banner">
         <img src="images/logo.png" alt="Restaurant Name Logo">
@@ -36,12 +51,12 @@
 </div>
 
 <main>
-    <section id="about" aria-labelledby="about-heading">
+    <section id="about" aria-labelledby="about-heading" tabindex="-1">
         <h2 id="about-heading">Our Story</h2>
         <p>Short introduction about the restaurant, its history, and what makes it special. We are passionate about creating memorable dining experiences with flavors that celebrate our culinary heritage.</p>
     </section>
 
-    <section id="menu" aria-labelledby="menu-heading">
+    <section id="menu" aria-labelledby="menu-heading" tabindex="-1">
         <h2 id="menu-heading">Our Menu</h2>
         <!-- Menu categories -->
         <div class="menu-category">
@@ -60,7 +75,7 @@
         <!-- More menu categories -->
     </section>
 
-    <section id="contact" aria-labelledby="contact-heading">
+    <section id="contact" aria-labelledby="contact-heading" tabindex="-1">
         <h2 id="contact-heading">Contact Us</h2>
         <address>
             <p>Located in Tallinn Old Town</p>
