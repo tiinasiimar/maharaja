@@ -1,124 +1,93 @@
 <!DOCTYPE html>
-<html lang="et">
+<html lang="ee">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maharaja Restoran - Autentne Põhja-India Köök</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Restorani Nimi</title>
     <link rel="stylesheet" href="css/styles.css">
-    <meta name="description" content="Koge autentset Põhja-India ja Punjabi kööki Maharaja restoranis Tallinnas.">
+    <!-- Add preload for critical resources -->
+    <link rel="preload" href="css/styles.css" as="style">
 </head>
 <body>
-<a href="#main" class="skip-link">Liigu põhisisu juurde</a>
+<script>
+    // Handle anchor clicks to manage focus
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const targetId = this.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
 
+            if (targetElement) {
+                targetElement.focus();
+                // Optional: Scroll into view handling is automatic with focus(),
+                // but you can customize it if needed
+            }
+        });
+    });
+</script>
 <header>
-    <div class="logo">
-        <a href="index-ee.html">
-            <h1>Maharaja</h1>
-        </a>
+    <div class="logo" role="banner">
+        <img src="images/logo.png" alt="Restorani Nimi Logo">
     </div>
-
-    <nav aria-label="Peamine navigatsioon">
+    <nav aria-label="Peamine Navigatsioon">
         <ul>
             <li><a href="#about">Meist</a></li>
             <li><a href="#menu">Menüü</a></li>
             <li><a href="#contact">Kontakt</a></li>
         </ul>
     </nav>
-
     <div class="language-selector">
         <ul>
-            <li><a href="index.html">EN</a></li>
-            <li><a href="index-ee.html" aria-current="page">EE</a></li>
+            <li><a href="index.html" lang="en" hreflang="en">English</a></li>
+            <li><a href="index-ee.html" lang="ee" hreflang="ee">Eesti</a></li>
         </ul>
     </div>
 </header>
-
 <div class="hero">
     <div class="hero-content">
-        <h1>Autentne Põhja-India Köök</h1>
-        <p>Koge Punjabi kuninglikke maitseid Tallinna südames</p>
-        <a href="#menu" class="btn">Vaata Menüüd</a>
+        <h1>Teretulemast Meie Restorani</h1>
+        <p>Nautige erakordset toiduelamust parimate koostisosade ja autentsete maitsetega</p>
+        <a href="#menu" class="btn">Vaata Meie Menüüd</a>
     </div>
 </div>
 
-<main id="main">
-    <section id="about" aria-labelledby="about-heading">
-        <h2 id="about-heading">Tere tulemast Maharajasse</h2>
-        <p>Maharaja Restoran toob Põhja-India autentsed maitsed Eestisse. Meie kokad kasutavad traditsioonilisi retsepte ja värskeid koostisosi, et luua roogi, mis peegeldavad Punjabi rikkalikku kulinaarset pärandit.</p>
-        <p>Iga toit valmistatakse hoolikalt, kasutades aromaatseid vürtse ja põlvkondade jooksul edasi antud toiduvalmistamise tehnikaid, et luua tõeline India toiduelamus.</p>
+<main>
+    <section id="about" aria-labelledby="about-heading" tabindex="-1">
+        <h2 id="about-heading">Meie Lugu</h2>
+        <p>Lühike tutvustus restoranist, selle ajaloost ja sellest, mis teeb selle eriliseks. Oleme pühendunud meeldejäävate toiduelamuste loomisele maitsetega, mis tähistavad meie kulinaarset pärandit.</p>
     </section>
 
-    <div class="royal-divider" aria-hidden="true"></div>
-
-    <section id="menu" aria-labelledby="menu-heading">
+    <section id="menu" aria-labelledby="menu-heading" tabindex="-1">
         <h2 id="menu-heading">Meie Menüü</h2>
-
+        <!-- Menu categories -->
         <div class="menu-category">
             <h3>Eelroad</h3>
             <ul class="menu-items">
-                <li class="menu-item">
-                    <h4>Samosa</h4>
-                    <p>Krõbe pirukas täidetud vürtsikate kartulite ja hernestega</p>
-                    <span class="price">€5.90</span>
+                <li>
+                    <div class="menu-item">
+                        <h4>Roa Nimi</h4>
+                        <p>Roa kirjeldus koos koostisosade ja valmistamisviisiga.</p>
+                        <span class="price">$10.99</span>
+                    </div>
                 </li>
-                <li class="menu-item">
-                    <h4>Paneer Tikka</h4>
-                    <p>Grillitud kodujuust vürtsides marineerituna</p>
-                    <span class="price">€7.90</span>
-                </li>
+                <!-- More menu items -->
             </ul>
         </div>
-
-        <div class="menu-category">
-            <h3>Pearoad</h3>
-            <ul class="menu-items">
-                <li class="menu-item">
-                    <h4>Butter Chicken</h4>
-                    <p>Mahlane kana rikkalikus tomati- ja võikastmes</p>
-                    <span class="price">€14.90</span>
-                </li>
-                <li class="menu-item">
-                    <h4>Palak Paneer</h4>
-                    <p>Kodujuustu kuubikud kreemjas spinatikastmes</p>
-                    <span class="price">€12.90</span>
-                </li>
-            </ul>
-        </div>
-
-        <div class="menu-category">
-            <h3>Leivad</h3>
-            <ul class="menu-items">
-                <li class="menu-item">
-                    <h4>Küüslaugu Naan</h4>
-                    <p>Kergitatud leib küüslaugu ja võiga</p>
-                    <span class="price">€3.50</span>
-                </li>
-                <li class="menu-item">
-                    <h4>Roti</h4>
-                    <p>Traditsiooniline täisteraleib</p>
-                    <span class="price">€2.50</span>
-                </li>
-            </ul>
-        </div>
+        <!-- More menu categories -->
     </section>
 
-    <div class="royal-divider" aria-hidden="true"></div>
-
-    <section id="contact" aria-labelledby="contact-heading">
-        <div>
-            <h2 id="contact-heading">Võta Meiega Ühendust</h2>
-            <address>
-                <p>Asukoht: Harju tänava park</p>
-                <p>Aadress: <a href="https://maps.google.com/?q=Harju+tn+7,+10146+Tallinn" target="_blank">Harju tn 7, 10146 Tallinn</a></p>
-                <p>Telefon: <a href="tel:+3725699 0624">5699 0624</a></p>
-                <p>Menüü: <a href="https://maharaja.ee" target="_blank">maharaja.ee</a></p>
-            </address>
-        </div>
+    <section id="contact" aria-labelledby="contact-heading" tabindex="-1">
+        <h2 id="contact-heading">Võta Meiega Ühendust</h2>
+        <address>
+            <p>Asume Tallinna Vanalinnas</p>
+            <p>Aadress: <a href="https://maps.google.com/?q=Harju+tn+7,+10146+Tallinn" target="_blank">Harju tn 7, 10146 Tallinn</a></p>
+            <p>Telefon: <a href="tel:+3725699 0624">5699 0624</a></p>
+            <p>E-post: <a href="mailto:info@maharaja.ee">info@maharaja.ee</a></p>
+        </address>
 
         <div class="opening-hours">
             <h3>Lahtiolekuajad</h3>
             <table>
-                <caption class="sr-only">Restorani Lahtiolekuajad</caption>
+                <caption class="sr-only">Lahtiolekuajad</caption>
                 <tbody>
                 <tr>
                     <th scope="row">Esmaspäev</th>
@@ -146,7 +115,7 @@
                 </tr>
                 <tr>
                     <th scope="row">Pühapäev</th>
-                    <td>11:00 - 22:30</td>
+                    <td>11:00- 22:30</td>
                 </tr>
                 </tbody>
             </table>
@@ -155,9 +124,7 @@
 </main>
 
 <footer>
-    <p>&copy; 2023 Maharaja Restoran. Kõik õigused kaitstud.</p>
+    <p>&copy; 2025 Restorani Nimi. Kõik õigused kaitstud.</p>
 </footer>
-
-<script src="js/script.js"></script>
 </body>
 </html>
