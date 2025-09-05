@@ -420,6 +420,19 @@ footer p {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
+/* Responsive hero text */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+}
+
 .hero p {
     font-size: 1.2rem;
     max-width: 600px;

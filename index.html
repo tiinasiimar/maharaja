@@ -9,21 +9,6 @@
     <link rel="preload" href="css/styles.css" as="style">
 </head>
 <body>
-<script>
-    // Handle anchor clicks to manage focus
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            const targetId = this.getAttribute('href').substring(1);
-            const targetElement = document.getElementById(targetId);
-
-            if (targetElement) {
-                targetElement.focus();
-                // Optional: Scroll into view handling is automatic with focus(),
-                // but you can customize it if needed
-            }
-        });
-    });
-</script>
 <header>
     <div class="logo" role="banner">
         <img src="images/maharaja_logo.png" alt="Restaurant Name Logo">
