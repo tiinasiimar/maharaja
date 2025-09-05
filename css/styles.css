@@ -480,21 +480,13 @@ address a:hover {
     text-decoration: underline;
 }
 
-.opening-hours table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.opening-hours th,
-.opening-hours td {
-    padding: 10px 0;
+.hours-simple {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--primary-color);
     text-align: left;
-    border-bottom: 1px solid #eee;
-}
-
-.opening-hours th {
-    font-weight: normal;
-    width: 50%;
+    margin: 0;
+    line-height: 1.8;
 }
 
 /* Footer */
