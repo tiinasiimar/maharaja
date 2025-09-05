@@ -363,37 +363,50 @@ footer p {
     height: 60vh;
     background-image: url('../images/maharaja_street.JPG');
     background-size: cover;
-    background-position: center top;
+    background-position: center 40%;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
     position: relative;
     margin-bottom: 60px;
-    animation: backgroundMove 20s ease-in-out infinite;
     overflow: hidden;
+    animation: backgroundMove 40s ease-in-out infinite;
+    will-change: background-position;
 }
 
 @keyframes backgroundMove {
     0% {
-        background-size: cover;
-        background-position: center 30%;
-    }
-    25% {
-        background-size: 120%;
-        background-position: center 50%;
+        background-size: 110%;
+        background-position: center 40%;
     }
     50% {
-        background-size: 110%;
-        background-position: center 70%;
-    }
-    75% {
-        background-size: 130%;
+        background-size: 115%;
         background-position: center 60%;
     }
     100% {
-        background-size: cover;
-        background-position: center 30%;
+        background-size: 110%;
+        background-position: center 40%;
+    }
+}
+
+/* Mobile-optimized animation */
+@media (max-width: 768px) {
+    .hero {
+        animation: backgroundMoveMobile 50s ease-in-out infinite;
+        background-size: 120%;
+    }
+}
+
+@keyframes backgroundMoveMobile {
+    0% {
+        background-position: center 35%;
+    }
+    50% {
+        background-position: center 55%;
+    }
+    100% {
+        background-position: center 35%;
     }
 }
 
