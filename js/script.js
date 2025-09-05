@@ -1,4 +1,4 @@
-// Gallery lightbox functionality
+// Gallery lightbox functionality with swipe support
 document.addEventListener('DOMContentLoaded', function() {
     const galleryItems = document.querySelectorAll('.gallery-item');
 
@@ -22,6 +22,13 @@ document.addEventListener('DOMContentLoaded', function() {
         src: item.dataset.src,
         alt: item.querySelector('img').alt
     }));
+
+    // Touch/swipe variables
+    let startX = 0;
+    let startY = 0;
+    let endX = 0;
+    let endY = 0;
+    let isSwipe = false;
 
     // Open lightbox
     galleryItems.forEach((item, index) => {
@@ -53,6 +60,46 @@ document.addEventListener('DOMContentLoaded', function() {
         currentImageIndex = (currentImageIndex + 1) % images.length;
         updateLightboxImage();
     });
+
+    // Touch events for swiping
+    lightbox.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+        isSwipe = false;
+    }, { passive: true });
+
+    lightbox.addEventListener('touchmove', (e) => {
+        if (!isSwipe) {
+            endX = e.touches[0].clientX;
+            endY = e.touches[0].clientY;
+
+            const diffX = Math.abs(startX - endX);
+            const diffY = Math.abs(startY - endY);
+
+            // Determine if it's a horizontal swipe
+            if (diffX > diffY && diffX > 50) {
+                isSwipe = true;
+            }
+        }
+    }, { passive: true });
+
+    lightbox.addEventListener('touchend', (e) => {
+        if (isSwipe) {
+            const diffX = startX - endX;
+            const minSwipeDistance = 50;
+
+            if (Math.abs(diffX) > minSwipeDistance) {
+                if (diffX > 0) {
+                    // Swipe left - next image
+                    nextBtn.click();
+                } else {
+                    // Swipe right - previous image
+                    prevBtn.click();
+                }
+            }
+        }
+        isSwipe = false;
+    }, { passive: true });
 
     // Keyboard navigation
     document.addEventListener('keydown', (e) => {
