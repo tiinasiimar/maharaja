@@ -1,0 +1,10 @@
+# Rewrite rules to make PHP API endpoints look like REST API
+# This makes /api/instagram work instead of /api/instagram.php
+
+RewriteEngine On
+
+# Redirect /api/instagram to instagram.php
+RewriteRule ^instagram$ instagram.php [L]
+
+# Redirect /api/health to health.php
+RewriteRule ^health$ health.php [L]
