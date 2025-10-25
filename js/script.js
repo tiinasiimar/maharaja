@@ -1,129 +1,75 @@
-// Gallery lightbox functionality with swipe support
+// Instagram feed
 document.addEventListener('DOMContentLoaded', function() {
-    const galleryItems = document.querySelectorAll('.gallery-item');
+    console.log('Script loaded! Looking for instagram-feed element...');
+    const feedContainer = document.getElementById('instagram-feed');
+    if (!feedContainer) {
+        console.error('ERROR: instagram-feed element not found!');
+        return;
+    }
+    console.log('Found instagram-feed element, fetching posts...');
 
-    // Create lightbox modal
-    const lightbox = document.createElement('div');
-    lightbox.className = 'lightbox';
-    lightbox.innerHTML = `
-        <div class="lightbox-content">
-            <span class="lightbox-close">&times;</span>
-            <img class="lightbox-image" src="" alt="">
-            <div class="lightbox-nav">
-                <button class="lightbox-prev">‹</button>
-                <button class="lightbox-next">›</button>
-            </div>
-        </div>
-    `;
-    document.body.appendChild(lightbox);
+    // Helper to create a card for Instagram post
+    function createInstaCard(post) {
+        const card = document.createElement('a');
+        card.href = post.permalink;
+        card.target = '_blank';
+        card.rel = 'noopener noreferrer';
+        card.className = 'instagram-card';
 
-    let currentImageIndex = 0;
-    const images = Array.from(galleryItems).map(item => ({
-        src: item.dataset.src,
-        alt: item.querySelector('img').alt
-    }));
+        const content = document.createElement('div');
+        content.className = 'instagram-card-content';
 
-    // Touch/swipe variables
-    let startX = 0;
-    let startY = 0;
-    let endX = 0;
-    let endY = 0;
-    let isSwipe = false;
+        const icon = document.createElement('div');
+        icon.className = 'instagram-icon';
+        icon.innerHTML = '📷';
 
-    // Open lightbox
-    galleryItems.forEach((item, index) => {
-        item.addEventListener('click', () => {
-            currentImageIndex = index;
-            openLightbox();
+        const caption = document.createElement('p');
+        caption.textContent = post.caption || 'View on Instagram';
+
+        const viewLink = document.createElement('span');
+        viewLink.className = 'view-link';
+        viewLink.textContent = 'View Post →';
+
+        content.appendChild(icon);
+        content.appendChild(caption);
+        content.appendChild(viewLink);
+        card.appendChild(content);
+
+        return card;
+    }
+
+    // Load posts from Go server API
+    fetch('/api/instagram', {
+        cache: 'no-store',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    })
+        .then(function(res) {
+            console.log('Instagram API response status:', res.status);
+            if (!res.ok) throw new Error('Failed to fetch Instagram posts');
+            return res.json();
+        })
+        .then(function(data) {
+            console.log('Instagram API data:', data);
+            const posts = data.data || [];
+            console.log('Number of posts:', posts.length);
+
+            if (posts.length === 0) {
+                feedContainer.innerHTML = '<p>Follow us on Instagram for the latest updates.</p>';
+                return;
+            }
+
+            // Render up to 6 posts as cards
+            posts.slice(0, 6).forEach(function(post) {
+                console.log('Adding post:', post.permalink);
+                const card = createInstaCard(post);
+                feedContainer.appendChild(card);
+            });
+        })
+        .catch(function(err) {
+            console.error('Error loading Instagram posts:', err);
+            feedContainer.innerHTML = '<p>Unable to load Instagram posts right now.</p>';
         });
-    });
-
-    // Close lightbox
-    lightbox.addEventListener('click', (e) => {
-        if (e.target === lightbox || e.target.classList.contains('lightbox-close')) {
-            closeLightbox();
-        }
-    });
-
-    // Navigation
-    const prevBtn = lightbox.querySelector('.lightbox-prev');
-    const nextBtn = lightbox.querySelector('.lightbox-next');
-
-    prevBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
-        updateLightboxImage();
-    });
-
-    nextBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        currentImageIndex = (currentImageIndex + 1) % images.length;
-        updateLightboxImage();
-    });
-
-    // Touch events for swiping
-    lightbox.addEventListener('touchstart', (e) => {
-        startX = e.touches[0].clientX;
-        startY = e.touches[0].clientY;
-        isSwipe = false;
-    }, { passive: true });
-
-    lightbox.addEventListener('touchmove', (e) => {
-        if (!isSwipe) {
-            endX = e.touches[0].clientX;
-            endY = e.touches[0].clientY;
-
-            const diffX = Math.abs(startX - endX);
-            const diffY = Math.abs(startY - endY);
-
-            // Determine if it's a horizontal swipe
-            if (diffX > diffY && diffX > 50) {
-                isSwipe = true;
-            }
-        }
-    }, { passive: true });
-
-    lightbox.addEventListener('touchend', (e) => {
-        if (isSwipe) {
-            const diffX = startX - endX;
-            const minSwipeDistance = 50;
-
-            if (Math.abs(diffX) > minSwipeDistance) {
-                if (diffX > 0) {
-                    // Swipe left - next image
-                    nextBtn.click();
-                } else {
-                    // Swipe right - previous image
-                    prevBtn.click();
-                }
-            }
-        }
-        isSwipe = false;
-    }, { passive: true });
-
-    // Keyboard navigation
-    document.addEventListener('keydown', (e) => {
-        if (lightbox.classList.contains('active')) {
-            if (e.key === 'Escape') closeLightbox();
-            if (e.key === 'ArrowLeft') prevBtn.click();
-            if (e.key === 'ArrowRight') nextBtn.click();
-        }
-    });
-
-    function openLightbox() {
-        updateLightboxImage();
-        lightbox.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-
-    function closeLightbox() {
-        lightbox.classList.remove('active');
-        document.body.style.overflow = '';
-    }
-
-    function updateLightboxImage() {
-        const img = lightbox.querySelector('.lightbox-image');
-        img.src = images[currentImageIndex].src;
-        img.alt = images[currentImageIndex].alt;
-    }
 });

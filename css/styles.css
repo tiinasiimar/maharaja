@@ -678,3 +678,66 @@ footer p {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
+/* Instagram Feed Cards */
+#instagram-feed {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.instagram-card {
+    display: block;
+    background: #fff;
+    border: 2px solid #e1e8ed;
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-decoration: none;
+    color: var(--text-color);
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.instagram-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border-color: var(--primary-color);
+}
+
+.instagram-card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.instagram-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.instagram-card p {
+    margin: 0.5rem 0 1rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #333;
+}
+
+.view-link {
+    display: inline-block;
+    color: var(--primary-color);
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+.instagram-card:hover .view-link {
+    color: var(--button-color);
+}
+
+@media (max-width: 768px) {
+    #instagram-feed {
+        grid-template-columns: 1fr;
+    }
+}
+
