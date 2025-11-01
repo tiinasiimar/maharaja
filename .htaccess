@@ -1,0 +1,112 @@
+# ==============================================================================
+# Maharaja Restaurant - Apache Configuration
+# Security Headers & Performance Optimizations
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# Security Headers
+# ------------------------------------------------------------------------------
+
+<IfModule mod_headers.c>
+    # Content Security Policy (CSP)
+    # Allows content only from trusted sources
+    Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self'; frame-src https://www.instagram.com; frame-ancestors 'none';"
+
+    # Prevent clickjacking attacks
+    Header always set X-Frame-Options "SAMEORIGIN"
+
+    # Prevent MIME-sniffing attacks
+    Header set X-Content-Type-Options "nosniff"
+
+    # Enable XSS protection for older browsers
+    Header set X-XSS-Protection "1; mode=block"
+
+    # Referrer Policy - control referrer information
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+
+    # Permissions Policy - disable unnecessary browser features
+    Header set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=()"
+
+    # Strict Transport Security (HSTS) - Force HTTPS for 1 year
+    # Only enable this if you're certain HTTPS works properly!
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains" env=HTTPS
+
+    # Remove server signature
+    Header unset Server
+    Header unset X-Powered-By
+</IfModule>
+
+# Hide Apache version
+ServerSignature Off
+
+# ------------------------------------------------------------------------------
+# HTTPS Redirect
+# ------------------------------------------------------------------------------
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Force HTTPS
+    RewriteCond %{HTTPS} off
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+    # Force www (optional - remove if you want non-www)
+    # RewriteCond %{HTTP_HOST} !^www\. [NC]
+    # RewriteRule ^(.*)$ https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# ------------------------------------------------------------------------------
+# Performance & Caching
+# ------------------------------------------------------------------------------
+
+<IfModule mod_deflate.c>
+    # Enable gzip compression
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json
+</IfModule>
+
+<IfModule mod_expires.c>
+    ExpiresActive On
+
+    # Images
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+
+    # CSS and JavaScript
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType text/javascript "access plus 1 month"
+
+    # Fonts
+    ExpiresByType font/ttf "access plus 1 year"
+    ExpiresByType font/woff "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
+
+    # HTML
+    ExpiresByType text/html "access plus 1 hour"
+
+    # JSON (for instagram.json)
+    ExpiresByType application/json "access plus 1 day"
+</IfModule>
+
+# ------------------------------------------------------------------------------
+# Directory Protection
+# ------------------------------------------------------------------------------
+
+# Prevent directory listing
+Options -Indexes
+
+# Protect sensitive files
+<FilesMatch "^(\.htaccess|\.gitignore|\.env|\.git|\.DS_Store|\.idea|go\.mod|go\.sum|main\.go|router\.php|README\.md|DEPLOYMENT\.md)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# ------------------------------------------------------------------------------
+# Error Pages (Optional)
+# ------------------------------------------------------------------------------
+
+# ErrorDocument 404 /404.html
+# ErrorDocument 500 /500.html
