@@ -11,24 +11,29 @@
     <meta name="keywords" content="India restoran Tallinn, Maharaja restoran, autentne India toit, Tallinna Vanalinn, India köök Eestis, parim India restoran Tallinn, Harju tänav restoran">
     <meta name="author" content="Maharaja Restoran">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://www.maharaja.ee/index-ee.html">
+    <link rel="canonical" href="https://maharaja.ee/index-ee.html">
+
+    <!-- Hreflang for language alternatives -->
+    <link rel="alternate" hreflang="en" href="https://maharaja.ee/" />
+    <link rel="alternate" hreflang="et" href="https://maharaja.ee/index-ee.html" />
+    <link rel="alternate" hreflang="x-default" href="https://maharaja.ee/" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="restaurant">
-    <meta property="og:url" content="https://www.maharaja.ee/index-ee.html">
+    <meta property="og:url" content="https://maharaja.ee/index-ee.html">
     <meta property="og:title" content="Maharaja Restoran | Autentne India Köök Tallinnas Alates 1989">
     <meta property="og:description" content="Koge autentset India kööki Maharajas, Tallinna esimeses India restoranis alates 1989. aastast. Asume Vanalinnas, pakume traditsioonilisi roogasid värskete vürtside ja koostisosadega.">
-    <meta property="og:image" content="https://www.maharaja.ee/images/new_maharaja_logo.png">
+    <meta property="og:image" content="https://maharaja.ee/images/new_maharaja_logo.png">
     <meta property="og:locale" content="et_EE">
     <meta property="og:locale:alternate" content="en_US">
     <meta property="og:site_name" content="Maharaja Restoran">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://www.maharaja.ee/index-ee.html">
+    <meta name="twitter:url" content="https://maharaja.ee/index-ee.html">
     <meta name="twitter:title" content="Maharaja Restoran | Autentne India Köök Tallinnas">
     <meta name="twitter:description" content="Koge autentset India kööki Maharajas, Tallinna esimeses India restoranis alates 1989. aastast. Asume Vanalinnas.">
-    <meta name="twitter:image" content="https://www.maharaja.ee/images/new_maharaja_logo.png">
+    <meta name="twitter:image" content="https://maharaja.ee/images/new_maharaja_logo.png">
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -53,11 +58,13 @@
       "@context": "https://schema.org",
       "@type": "Restaurant",
       "name": "Maharaja",
-      "image": "https://www.maharaja.ee/images/new_maharaja_logo.png",
+      "image": "https://maharaja.ee/images/new_maharaja_logo.png",
       "description": "Autentne India restoran Tallinna Vanalinnas alates 1989. aastast. Traditsiooniline India köök värskete vürtside ja koostisosadega.",
-      "servesCuisine": "Indian",
+      "servesCuisine": ["Indian", "Asian", "Vegetarian"],
       "foundingDate": "1989",
       "priceRange": "$$",
+      "acceptsReservations": "True",
+      "hasMap": "https://maps.google.com/?q=Harju+tn+7,+10146+Tallinn",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Harju tn 7",
@@ -73,7 +80,7 @@
       },
       "telephone": "+372-5699-0624",
       "email": "info@maharaja.ee",
-      "url": "https://www.maharaja.ee/index-ee.html",
+      "url": "https://maharaja.ee/index-ee.html",
       "openingHoursSpecification": {
         "@type": "OpeningHoursSpecification",
         "dayOfWeek": [
@@ -88,6 +95,8 @@
         "opens": "11:00",
         "closes": "23:00"
       },
+      "paymentAccepted": "Cash, Credit Card",
+      "currenciesAccepted": "EUR",
       "sameAs": [
         "https://www.instagram.com/maharajarestoran/"
       ]
@@ -148,6 +157,12 @@
     <section id="instagram" aria-labelledby="instagram-heading" tabindex="-1">
         <h2 id="instagram-heading">Instagram</h2>
         <div id="instagram-feed" aria-live="polite"></div>
+        <noscript>
+            <div class="instagram-fallback" style="text-align: center; padding: 2rem; background: #f5f5f5; border-radius: 8px;">
+                <p style="margin-bottom: 1rem;">JavaScript on nõutud meie Instagrami voo vaatamiseks.</p>
+                <p><a href="https://www.instagram.com/maharajarestoran/" target="_blank" rel="noopener" style="color: #D4AF37; text-decoration: underline;">Külasta meie Instagrami profiili →</a></p>
+            </div>
+        </noscript>
     </section>
 
     <section id="contact" aria-labelledby="contact-heading" tabindex="-1">

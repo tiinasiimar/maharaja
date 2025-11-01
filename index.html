@@ -11,24 +11,29 @@
     <meta name="keywords" content="Indian restaurant Tallinn, Maharaja restaurant, authentic Indian food, Tallinn Old Town dining, Indian cuisine Estonia, best Indian restaurant Tallinn, Harju street restaurant">
     <meta name="author" content="Maharaja Restaurant">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://www.maharaja.ee/">
+    <link rel="canonical" href="https://maharaja.ee/">
+
+    <!-- Hreflang for language alternatives -->
+    <link rel="alternate" hreflang="en" href="https://maharaja.ee/" />
+    <link rel="alternate" hreflang="et" href="https://maharaja.ee/index-ee.html" />
+    <link rel="alternate" hreflang="x-default" href="https://maharaja.ee/" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="restaurant">
-    <meta property="og:url" content="https://www.maharaja.ee/">
+    <meta property="og:url" content="https://maharaja.ee/">
     <meta property="og:title" content="Maharaja Restaurant | Authentic Indian Cuisine in Tallinn Since 1989">
     <meta property="og:description" content="Experience authentic Indian cuisine at Maharaja, Tallinn's first Indian restaurant since 1989. Located in Old Town, serving traditional dishes with fresh spices.">
-    <meta property="og:image" content="https://www.maharaja.ee/images/new_maharaja_logo.png">
+    <meta property="og:image" content="https://maharaja.ee/images/new_maharaja_logo.png">
     <meta property="og:locale" content="en_US">
     <meta property="og:locale:alternate" content="et_EE">
     <meta property="og:site_name" content="Maharaja Restaurant">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://www.maharaja.ee/">
+    <meta name="twitter:url" content="https://maharaja.ee/">
     <meta name="twitter:title" content="Maharaja Restaurant | Authentic Indian Cuisine in Tallinn">
     <meta name="twitter:description" content="Experience authentic Indian cuisine at Maharaja, Tallinn's first Indian restaurant since 1989. Located in Old Town.">
-    <meta name="twitter:image" content="https://www.maharaja.ee/images/new_maharaja_logo.png">
+    <meta name="twitter:image" content="https://maharaja.ee/images/new_maharaja_logo.png">
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -53,11 +58,13 @@
       "@context": "https://schema.org",
       "@type": "Restaurant",
       "name": "Maharaja",
-      "image": "https://www.maharaja.ee/images/new_maharaja_logo.png",
+      "image": "https://maharaja.ee/images/new_maharaja_logo.png",
       "description": "Authentic Indian restaurant in Tallinn Old Town since 1989. Traditional Indian cuisine with fresh spices and ingredients.",
-      "servesCuisine": "Indian",
+      "servesCuisine": ["Indian", "Asian", "Vegetarian"],
       "foundingDate": "1989",
       "priceRange": "$$",
+      "acceptsReservations": "True",
+      "hasMap": "https://maps.google.com/?q=Harju+tn+7,+10146+Tallinn",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Harju tn 7",
@@ -73,7 +80,7 @@
       },
       "telephone": "+372-5699-0624",
       "email": "info@maharaja.ee",
-      "url": "https://www.maharaja.ee",
+      "url": "https://maharaja.ee",
       "openingHoursSpecification": {
         "@type": "OpeningHoursSpecification",
         "dayOfWeek": [
@@ -88,6 +95,8 @@
         "opens": "11:00",
         "closes": "23:00"
       },
+      "paymentAccepted": "Cash, Credit Card",
+      "currenciesAccepted": "EUR",
       "sameAs": [
         "https://www.instagram.com/maharajarestoran/"
       ]
@@ -133,6 +142,12 @@
     <section id="instagram" aria-labelledby="instagram-heading" tabindex="-1">
         <h2 id="instagram-heading">Instagram</h2>
         <div id="instagram-feed" aria-live="polite"></div>
+        <noscript>
+            <div class="instagram-fallback" style="text-align: center; padding: 2rem; background: #f5f5f5; border-radius: 8px;">
+                <p style="margin-bottom: 1rem;">JavaScript is required to view our Instagram feed.</p>
+                <p><a href="https://www.instagram.com/maharajarestoran/" target="_blank" rel="noopener" style="color: #D4AF37; text-decoration: underline;">Visit our Instagram profile →</a></p>
+            </div>
+        </noscript>
     </section>
 
     <section id="contact" aria-labelledby="contact-heading" tabindex="-1">
